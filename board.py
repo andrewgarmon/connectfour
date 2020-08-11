@@ -51,6 +51,7 @@ class Board:
                     else:
                         count = 0
         #Check for diagonal win
+        # L to R, Bottom to Top
         for i in range(3, self.size):
             count = 0
             for j in range(0, i+1):
@@ -60,10 +61,33 @@ class Board:
                     count = 0
                 if count == 4:
                     return True
+        #R to L, Bottom to Top
         for i in range(3, self.size):
             count = 0
             for j in range(0, i+1):
                 if self.tiles[i-j][self.size - j - 1] == piece:
+                    count += 1
+                else:
+                    count = 0
+                if count == 4:
+                    return True
+        
+        #L to R, Top to Bottom
+        for i in range(0, self.size - 3):
+            count = 0
+            for j in range(0, self.size - i):
+                if self.tiles[i+j][j] == piece:
+                    count += 1
+                else:
+                    count = 0
+                if count == 4:
+                    return True
+
+        # R to L, Top to Bottom
+        for i in range(0, self.size - 3):
+            count = 0
+            for j in range (0, self.size - i):
+                if self.tiles[i+j][self.size - j - 1] == piece:
                     count += 1
                 else:
                     count = 0
